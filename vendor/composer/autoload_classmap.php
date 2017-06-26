@@ -8,6 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'Comments' => $baseDir . '/database/migrations/2015_05_23_133935_comments.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreatePostsTagTable' => $baseDir . '/database/migrations/2017_06_26_151850_create_posts_tag_table.php',
+    'CreateTagsTable' => $baseDir . '/database/migrations/2017_06_26_151737_create_tags_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator.php',
@@ -426,5 +428,4 @@ return array(
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/Text/Template.php',
-    'UserProfile' => $baseDir . '/database/migrations/2015_06_09_081941_user_profile.php',
 );

@@ -15,6 +15,8 @@ Route::get('/',['as' => 'home', 'uses' => 'PostController@index']);
 
 Route::get('/home',['as' => 'home', 'uses' => 'PostController@index']);
 
+Route::get('/analytic','AnalyticController@analytic');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

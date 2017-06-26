@@ -28,6 +28,13 @@ Edit Post
 			{!! old('body') !!}
 		</textarea>
 	</div>
+        <div class="form-group">
+		<input value="@foreach($post->tags as $tag){{ $tag->tag }},@endforeach" placeholder="Enter tags here" type="text" name = "tags" class="form-control" />
+                       
+                       
+                       
+                       
+	</div>
 	@if($post->active == '1')
 	<input type="submit" name='publish' class="btn btn-success" value = "Update"/>
 	@else

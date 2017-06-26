@@ -5,6 +5,8 @@ use App\User;
 use Redirect;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostFormRequest;
+use App\Tag;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -73,6 +75,20 @@ class PostController extends Controller {
 			$message = 'Post published successfully';
 		}
 		$post->save();
+                $tags = $request->get('tags');
+                $tags = explode(',',$tags);
+                foreach($tags as $tag){
+                    $datatag = Tag::where('tag',$tag)->first();
+                    if(!$datatag){
+                        $datatag = new Tag;
+                        $datatag->tag = $tag;
+                        $datatag->save();
+                    }
+                    DB::table('posts_tag')->insert([
+                        'posts_id'=>$post->id,
+                        'tag_id'=>$datatag->id,
+                    ]);
+                }
 		return redirect('edit/'.$post->slug)->withMessage($message);
 	}
 
@@ -159,6 +175,23 @@ class PostController extends Controller {
 				$landing = $post->slug;
 			}
 			$post->save();
+                        DB::table('posts_tag')->where('posts_id',$post->id)->delete();
+                        $tags = $request->get('tags');
+                        $tags = explode(',',$tags);
+                        foreach($tags as $tag){
+                            if(!empty($tag)){
+                            $datatag = Tag::where('tag',$tag)->first();
+                            if(!$datatag){
+                                $datatag = new Tag;
+                                $datatag->tag = $tag;
+                                $datatag->save();
+                            }
+                            DB::table('posts_tag')->insert([
+                                'posts_id'=>$post->id,
+                                'tag_id'=>$datatag->id,
+                            ]);
+                            }
+                        }
 	 		return redirect($landing)->withMessage($message);
 		}
 		else
